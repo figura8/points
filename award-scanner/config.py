@@ -33,4 +33,18 @@ class Settings:
     united_bearer_token: str = os.getenv("UNITED_BEARER_TOKEN", "")
     united_cookies: str = os.getenv("UNITED_COOKIES", "")
 
+    air_canada_api_key: str = os.getenv("AIR_CANADA_API_KEY", "")
+    air_canada_access_token: str = os.getenv("AIR_CANADA_ACCESS_TOKEN", "")
+    air_canada_id_token: str = os.getenv("AIR_CANADA_ID_TOKEN", "")
+    air_canada_ama_session_token: str = os.getenv("AIR_CANADA_AMA_SESSION_TOKEN", "")
+    air_canada_cookies: str = os.getenv("AIR_CANADA_COOKIES", "")
+    air_canada_accept_language: str = os.getenv("AIR_CANADA_ACCEPT_LANGUAGE", "it-IT,it;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6")
+    air_canada_referer: str = os.getenv("AIR_CANADA_REFERER", "https://www.aircanada.com/")
+    air_canada_user_agent: str = os.getenv("AIR_CANADA_USER_AGENT", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36")
+    air_canada_sec_ch_ua: str = os.getenv("AIR_CANADA_SEC_CH_UA", '"Chromium";v="146", "Not-A.Brand";v="24", "Google Chrome";v="146"')
+    air_canada_kpsdk_cd: str = os.getenv("AIR_CANADA_KPSDK_CD", "")
+    air_canada_kpsdk_ct: str = os.getenv("AIR_CANADA_KPSDK_CT", "")
+    air_canada_kpsdk_v: str = os.getenv("AIR_CANADA_KPSDK_V", "")
+    air_canada_ff_card_number: str = os.getenv("AIR_CANADA_FF_CARD_NUMBER", "")
+
 settings = Settings()

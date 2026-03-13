@@ -83,3 +83,16 @@ Then visit:
 
 It intentionally does **not** include guessed airline internal endpoints.
 When you are ready to add live crawling, verify endpoint URLs, payloads, and headers manually in browser DevTools first.
+
+## Air Canada quick test
+
+If you want to test Aeroplan/AC instead of United:
+
+1. Add `AIR_CANADA_*` values to `.env` (copy from a working browser cURL).
+2. Run:
+
+```bash
+python seed_air_canada.py
+```
+
+The script will fetch AC award rows and upsert them into the same SQLite DB.
