@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Award Scanner</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+      th { background: #f5f5f5; }
+    </style>
+  </head>
+  <body>
+    <h1>Minimal Award Scanner</h1>
+    <button id="reload">Reload Awards</button>
+    <p id="status">Idle</p>
+    <table>
+      <thead>
+        <tr><th>Route</th><th>Date</th><th>Cabin</th><th>Miles</th><th>Seats</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+
+    <script>
+      async function loadAwards() {
+        const status = document.getElementById('status');
+        const rows = document.getElementById('rows');
+        status.textContent = 'Loading...';
+        rows.innerHTML = '';
+
+        try {
+          const res = await fetch('http://localhost:8000/awards?limit=50');
+          const data = await res.json();
+          for (const item of data) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${item.origin} → ${item.destination}</td><td>${item.departure_date}</td><td>${item.cabin}</td><td>${item.miles_cost}</td><td>${item.seats}</td>`;
+            rows.appendChild(tr);
+          }
+          status.textContent = `Loaded ${data.length} awards`;
+        } catch (err) {
+          status.textContent = 'Failed to load awards. Is API running on :8000?';
+        }
+      }
+
+      document.getElementById('reload').addEventListener('click', loadAwards);
+      loadAwards();
+    </script>
+  </body>
+</html>
