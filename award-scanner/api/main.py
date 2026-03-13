@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
 from db.database import init_db, search_availability
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(title="Award Scanner API", version="0.1.0")
 
@@ -49,3 +50,6 @@ def get_routes() -> list[dict[str, str]]:
     awards = search_availability(limit=1000)
     unique = {(row["origin"], row["destination"]) for row in awards}
     return [{"origin": origin, "destination": destination} for origin, destination in sorted(unique)]
+
+# alla fine del file, dopo tutti gli endpoint:
+app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
